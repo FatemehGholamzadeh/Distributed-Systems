@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+  <h2>Problems</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Problem</th>
+        <th scope="col">Setter</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for problem in problems_list %}
+      <tr>
+        <th><a href="{% url 'problems:problem_page' slug=problem.slug %}">{{problem.problem_name}}</a></th>
+        <th> <a href="{% url 'coders:user_info' username=problem.setter %}">{{problem.setter}}</a> </th>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock body_block %}

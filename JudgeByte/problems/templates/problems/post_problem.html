@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<h2>Post Problem</h2>
+<script src="{% static 'js/medium_editor/medium-editor.min.js'  %}"></script>
+<link rel="stylesheet" href="{% static 'css/medium_editor/medium-editor.css' %}">
+<link rel="stylesheet" href="{% static 'css/medium_editor/themes/default.min.css' %}">
+<form method="post" enctype="multipart/form-data"}>
+  {% csrf_token %}
+  {{form.as_p}}
+  <ul>
+    <li>Test File should be of zip format with input and output test files as input00.txt and output00.txt and so on inside the input and output folder, the name of the zip file should be test.zip</li>
+  </ul>
+  <input class = "btn btn-primary" type="submit" value="Submit Problem">
+</form>
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock body_block %}
