@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body_block %}
+    <form>
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Sign Up">
+    </form>
+{% endblock body_block %}
+
+</body>
+</html>
