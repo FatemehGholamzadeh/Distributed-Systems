@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<script src="{% static 'js/medium_editor/medium-editor.min.js'  %}"></script>
+<link rel="stylesheet" href="{% static 'css/medium_editor/medium-editor.css' %}">
+<link rel="stylesheet" href="{% static 'css/medium_editor/themes/default.min.css' %}">
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class = "btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock body_block %}

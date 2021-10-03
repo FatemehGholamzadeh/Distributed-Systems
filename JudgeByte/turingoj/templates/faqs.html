@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+    <div class="container">
+        <h2>FAQs</h2>
+        <br>
+        {% for faq in faq_list %}
+            <h4><strong>{{ faq.question|safe }}</strong></h4>
+            <p>{{ faq.answer|safe|linebreaksbr }}</p>
+            <br>
+        {% endfor %}
+        <br>
+        About Me:<br><br>
+        <p>Contact: <a href="https://fatemeh.gholamzadeh77@gmail.com">Fatemeh Gholamzadeh</a> <br>
+
+
+            {% if request.user.is_superuser %}
+                <br><a href="{% url 'post_faq' %}" class="btn btn-primary">New</a>
+            {% endif %}
+
+
+        </p>
+    </div>
+
+{% endblock body_block %}

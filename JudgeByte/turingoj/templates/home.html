@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+    {#    <div class="col-sm-8">#}
+    {#        <h1>Welcome to JudgeByte</h1>#}
+    {#    </div>#}
+    <img src="{% static 'images/8.png'  %}" alt="Logo" width="200" height="200" class="float-right d-none d-md-block zoom w3-hover-opacity ">
+    <main class="container" >
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-5">JudgeByte</h1>
+
+                <p class="lead">JudgeByte is an automated system to run programming contests
+{#                    <abbr title="International Collegiate Programming Contest"></abbr>.</p>#}
+
+                <p></p>
+                <p><a class="btn btn-primary" href="{% url 'coders:sign_up' %}" role="button">Join US »</a></p>
+            </div>
+        </div>
+    </main>
+{% endblock body_block %}

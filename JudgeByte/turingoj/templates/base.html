@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JudgeByte</title>
+    <link rel="stylesheet" href="{% static 'css/basecss.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body style="background-color: #f1f1f1">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <ul class="nav navbar-nav">
+        <li><a href="{% url 'homepage' %}" class="navbar-brand">JudgeByte</a></li>
+        <li><a href="{% url 'problems:problem_list' %}" class="navbar-brand">Problemset</a></li>
+        <li><a href="{% url 'submissions:submission_home' %}" class="navbar-brand">Submissions</a></li>
+        <li><a href="{% url 'leaderboard' %}" class="navbar-brand">Leaderboard</a></li>
+        <li><a href="{% url 'faqs' %}" class="navbar-brand">FAQs</a></li>
+        {% if user.is_authenticated %}
+            {% if perms.coders.can_set_problems %}
+                <li><a href="{% url 'problems:new_problem' %}" class="navbar-brand">New Problem</a></li>
+            {% endif %}
+            <li><a href="{% url 'logout' %}" class="navbar-brand">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}" class="navbar-brand">Login</a></li>
+            <li><a href="{% url 'coders:sign_up' %}" class="navbar-brand">Signup</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="container">
+    {% block body_block %}
+
+    {% endblock body_block %}
+</div>
+<div class="card-footer text-muted text-center ">
+    made by : Fatemeh Gholamzadeh
+</div>
+<div class="card-footer text-muted text-right ">
+    <strong> v1.0 </strong>
+</div>
+</body>
+</html>
