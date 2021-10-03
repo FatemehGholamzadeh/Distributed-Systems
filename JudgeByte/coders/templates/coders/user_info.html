@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+
+<table class="table">
+  <tr>
+    <th>Name: </th>
+    <td>{{userprofile.name}}</td>
+  </tr>
+  <tr>
+    <th>Handle: </th>
+    <td>{{userprofile.username}}</td>
+  </tr>
+  <tr>
+    <th>Registered: </th>
+    <td>{{userprofile.date_joined|date:"d M Y"}}</td>
+  </tr>
+  <tr>
+    <th>Score: </th>
+    <td>{{userprofile.score}}</td>
+  </tr>
+</table>
+<a href="{% url 'coders:user_submissions' username=userprofile.username %}" class="btn btn-primary">Submissions</a>
+
+</div>
+{% endblock body_block %}
