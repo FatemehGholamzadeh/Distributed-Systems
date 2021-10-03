@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+  <h2>Submissions</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Submitted On</th>
+        <th scope="col">Problem</th>
+        <th scope="col">User</th>
+        <th scope="col">Language</th>
+        <th scope="col">Verdict</th>
+        <th scope="col">Execution Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for submission in submissions_list %}
+      <tr>
+        {% if user.get_username == submission.user_handle.username or request.user.is_staff or all_solutions_visible is True %}
+          <th scope="row"> <a href="{% url 'submissions:submission_detail' submission_id=submission.id %}">{{submission.id}}</a> </th>
+        {% else %}
+          <th scope="row">{{submission.id}}</th>
+        {% endif %}
+        <th>{{submission.created_date}}</th>
+        <th><a href="{% url 'problems:problem_page' slug=submission.problem_submitted.slug %}">{{submission.problem_submitted.slug}}</a></th>
+        <th> <a href="{% url 'coders:user_info' username=submission.user_handle.username %}">{{submission.user_handle.username}}</a> </th>
+        <th>{{submission.actual_language}}</th>
+        <th>{{submission.verdict}}</th>
+        <th>{{submission.execution_time}} s</th>
+
+
+
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  {% if is_paginated %}
+  <nav>
+    <ul class="pagination">
+      {% if submissions_list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ submissions_list.previous_page_number }}">Previous</a></li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        {% if submissions_list.number == i %}
+          <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if submissions_list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ submissions_list.next_page_number }}">Next</a></li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Next</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+</div>
+
+{% endblock body_block %}

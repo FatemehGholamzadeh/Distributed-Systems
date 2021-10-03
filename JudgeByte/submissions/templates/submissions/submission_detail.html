@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+  <h2>Problem: {{submission.problem_submitted.slug}}</h2>
+  Submitted On : {{submission.created_date}} <br>
+  User : {{submission.user_handle.username}} <br>
+  Language : {{submission.actual_language}} <br>
+  Verdict : {{submission.verdict}} <br>
+  Execution Time : {{submission.execution_time}} <br>
+  <hr>
+  <p><label for="id_src_code">Src code:</label> <textarea name="src_code" cols="80" rows="20" data-editor="{{submission.language}}" required id="id_src_code">{{src_code}}
+  </textarea></p>
+</div>
+<script src="{% static 'js/ace/src-min-noconflict/ace.js' %}"></script>
+<script src="{% static 'js/text_area_ace/ta_ace.js' %}"></script>
+{% endblock body_block %}
