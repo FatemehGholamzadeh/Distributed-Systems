@@ -1,0 +1,29 @@
+.container {
+  /*position: relative;*/
+  width: 50%;
+}
+.float-right {
+    display: block;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 20px;
+    width: 20%;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    opacity: 1;
+
+
+}
+.zoom {
+  padding: 55px;
+  /*background-color: green;*/
+  transition: transform .4s; /* Animation */
+  width: 35%;
+  height: 35%;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
